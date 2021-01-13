@@ -12,6 +12,46 @@ niro.login(process.env.NIRO_TOKEN).catch(err => console.error(`[ Discord ] Worng
 const fs = require("fs");///All Copyrights Go's To NIR0 & NIR0-V
 const prefix = process.env.NIRO_PREFIX;///All Copyrights Go's To NIR0 & NIR0-V
 
+let prefixes = JSON.parse(fs.readFileSync("./prefix.json", "utf8"));
+ /*
+ if (!prefixes[message.guild.id]) prefixes[message.guild.id] = {
+        prefix: process.env.NIRO_PREFIX,
+    };
+    var prefix = prefixes[message.guild.id].;
+
+    fs.writeFile("./Database/prefix.json", JSON.stringify(prefixes), (err) => {
+        if (err) console.error(err);
+    });
+ */
+niro.on("message", message => {
+    if (!message.channel.guild) return;
+    if (message.author.bot) return;
+    if (!prefixes[message.guild.id]) prefixes[message.guild.id] = {
+        prefix: process.env.NIRO_PREFIX,
+    };
+    var prefix = prefixes[message.guild.id].prefix;
+    var setp = prefixes[message.guild.id];
+    if (message.content.startsWith(prefix + 'setp')) {
+        if (!message.member.hasPermission(`MANAGE_GUILD`)) return message.reply(`**:x: Error: You do not have the required permissions: Manage Server.**`);
+ 
+        let args = message.content.split(" ").slice(1);
+ 
+        if (!args.join(" ")) return message.reply(`**:x: Error: Say The Prefix Please.**`);
+          const embed = new Discord.RichEmbed()
+ 
+       .setColor("BLACK")
+  .setTitle("Prefix Set!")
+  .setDescription(`**Set to ${args[0]}**`);
+    message.channel.send(embed);
+        setp.prefix = args.join();
+ 
+    }
+ 
+    fs.writeFile("./Database/prefix.json", JSON.stringify(prefixes), (err) => {
+        if (err) console.error(err);
+    });
+});
+
 /////////////////////|
 niro.on("ready", async () => {
   console.log(`
@@ -51,9 +91,6 @@ niro.on("ready", async () => {
   })
 });
 
-let prefixes = JSON.parse(fs.readFileSync("./prefix.json", "utf8"));///All Copyrights Go's To NIR0 & NIR0-V
-const dol = "All Copyrights Go's To NIR0 & NIR0-V";///All Copyrights Go's To NIR0 & NIR0-V
-
 niro.on("message", message => {
   if (message.channel.type === "dm") {
 
@@ -66,6 +103,13 @@ niro.on("message", message => {
 });
 
 niro.on("message", async niro_help => {
+   
+  if (!prefixes[niro_help.guild.id])///All Copyrights Go's To NIR0 & NIR0-V
+    prefixes[niro_help.guild.id] = {///All Copyrights Go's To NIR0 & NIR0-V
+      prefix: process.env.PREFIX///All Copyrights Go's To NIR0 & NIR0-V
+    };///All Copyrights Go's To NIR0 & NIR0-V
+
+  var prefix = prefixes[niro_help.guild.id].prefix;
   if (niro_help.content.startsWith(prefix + "help")) {
     niro_help.channel.send(new Discord.RichEmbed().setColor("GREEN").setFooter("NIRO_GAMEZ IS BACK").setAuthor("~~=~~ Bot Orders | أوامر البوت ~~=~~").setDescription(`**
 ╭━━┳━━┳━━┳━━┳━━┳━━┳━━┳━━┳━━┳━━┳━━╮
@@ -181,7 +225,13 @@ niro.on("message", async niro_help => {
 })
 /////////////////////|
 
-niro.on("message", async niro_games => {
+niro.on("message", async niro_games => {///All Copyrights Go's To NIR0 & NIR0-V
+  if (!prefixes[niro_games.guild.id])///All Copyrights Go's To NIR0 & NIR0-V
+    prefixes[niro_games.guild.id] = {///All Copyrights Go's To NIR0 & NIR0-V
+      prefix: process.env.PREFIX///All Copyrights Go's To NIR0 & NIR0-V
+    };///All Copyrights Go's To NIR0 & NIR0-V
+
+  var prefix = prefixes[niro_games.guild.id].prefix;///All Copyrights Go's To NIR0 & NIR0-V
   if (!niro_games.channel.guild) return;///All Copyrights Go's To NIR0 & NIR0-V
   if (niro_games.content.startsWith(prefix + "ping")) {///All Copyrights Go's To NIR0 & NIR0-V
     if (!niro_games.channel.guild) return;///All Copyrights Go's To NIR0 & NIR0-V
@@ -196,8 +246,17 @@ niro.on("message", async niro_games => {
     niro_games.channel.send({ embed: embed });///All Copyrights Go's To NIR0 & NIR0-V
   }///All Copyrights Go's To NIR0 & NIR0-V
 });///All Copyrights Go's To NIR0 & NIR0-V
+fs.writeFile("./prefix.json", JSON.stringify(prefixes), err => {///All Copyrights Go's To NIR0 & NIR0-V
+  if (err) console.error(err);///All Copyrights Go's To NIR0 & NIR0-V
+});///All Copyrights Go's To NIR0 & NIR0-V
 
-niro.on("message", niro_games => {
+niro.on("message", niro_games => {///All Copyrights Go's To NIR0 & NIR0-V
+  if (!prefixes[niro_games.guild.id])///All Copyrights Go's To NIR0 & NIR0-V
+    prefixes[niro_games.guild.id] = {///All Copyrights Go's To NIR0 & NIR0-V
+      prefix: process.env.PREFIX///All Copyrights Go's To NIR0 & NIR0-V
+    };///All Copyrights Go's To NIR0 & NIR0-V
+
+  var prefix = prefixes[niro_games.guild.id].prefix;///All Copyrights Go's To NIR0 & NIR0-V
   if (///All Copyrights Go's To NIR0 & NIR0-V
     niro_games.content == prefix + "fkk" ||///All Copyrights Go's To NIR0 & NIR0-V
     niro_games.content == prefix + "فكك"///All Copyrights Go's To NIR0 & NIR0-V
@@ -233,8 +292,17 @@ niro.on("message", niro_games => {
     });///All Copyrights Go's To NIR0 & NIR0-V
   }///All Copyrights Go's To NIR0 & NIR0-V
 });///All Copyrights Go's To NIR0 & NIR0-V
+fs.writeFile("./prefix.json", JSON.stringify(prefixes), err => {///All Copyrights Go's To NIR0 & NIR0-V
+  if (err) console.error(err);///All Copyrights Go's To NIR0 & NIR0-V
+});///All Copyrights Go's To NIR0 & NIR0-V
 
-niro.on("message", niro_games => {
+niro.on("message", niro_games => {///All Copyrights Go's To NIR0 & NIR0-V
+  if (!prefixes[niro_games.guild.id])///All Copyrights Go's To NIR0 & NIR0-V
+    prefixes[niro_games.guild.id] = {///All Copyrights Go's To NIR0 & NIR0-V
+      prefix: process.env.PREFIX///All Copyrights Go's To NIR0 & NIR0-V
+    };///All Copyrights Go's To NIR0 & NIR0-V
+
+  var prefix = prefixes[niro_games.guild.id].prefix;///All Copyrights Go's To NIR0 & NIR0-V
   if (///All Copyrights Go's To NIR0 & NIR0-V
     niro_games.content == prefix + "puzzle" ||///All Copyrights Go's To NIR0 & NIR0-V
     niro_games.content == prefix + "لغز"///All Copyrights Go's To NIR0 & NIR0-V
@@ -270,8 +338,17 @@ niro.on("message", niro_games => {
     });///All Copyrights Go's To NIR0 & NIR0-V
   }
 });
+fs.writeFile("./prefix.json", JSON.stringify(prefixes), err => {///All Copyrights Go's To NIR0 & NIR0-V
+  if (err) console.error(err);///All Copyrights Go's To NIR0 & NIR0-V
+});///All Copyrights Go's To NIR0 & NIR0-V
 
-niro.on("message", niro_games => {
+niro.on("message", niro_games => {///All Copyrights Go's To NIR0 & NIR0-V
+  if (!prefixes[niro_games.guild.id])///All Copyrights Go's To NIR0 & NIR0-V
+    prefixes[niro_games.guild.id] = {///All Copyrights Go's To NIR0 & NIR0-V
+      prefix: process.env.PREFIX///All Copyrights Go's To NIR0 & NIR0-V
+    };///All Copyrights Go's To NIR0 & NIR0-V
+
+  var prefix = prefixes[niro_games.guild.id].prefix;///All Copyrights Go's To NIR0 & NIR0-V
   if (///All Copyrights Go's To NIR0 & NIR0-V
     niro_games.content == prefix + "fast" ||///All Copyrights Go's To NIR0 & NIR0-V
     niro_games.content == prefix + "اسرع"///All Copyrights Go's To NIR0 & NIR0-V
@@ -307,8 +384,17 @@ niro.on("message", niro_games => {
     });///All Copyrights Go's To NIR0 & NIR0-V
   }///All Copyrights Go's To NIR0 & NIR0-V
 });///All Copyrights Go's To NIR0 & NIR0-V
+fs.writeFile("./prefix.json", JSON.stringify(prefixes), err => {///All Copyrights Go's To NIR0 & NIR0-V
+  if (err) console.error(err);///All Copyrights Go's To NIR0 & NIR0-V
+});///All Copyrights Go's To NIR0 & NIR0-V
 
-niro.on("message", niro_games => {
+niro.on("message", niro_games => {///All Copyrights Go's To NIR0 & NIR0-V
+  if (!prefixes[niro_games.guild.id])///All Copyrights Go's To NIR0 & NIR0-V
+    prefixes[niro_games.guild.id] = {///All Copyrights Go's To NIR0 & NIR0-V
+      prefix: process.env.PREFIX///All Copyrights Go's To NIR0 & NIR0-V
+    };///All Copyrights Go's To NIR0 & NIR0-V
+
+  var prefix = prefixes[niro_games.guild.id].prefix;///All Copyrights Go's To NIR0 & NIR0-V
   if (///All Copyrights Go's To NIR0 & NIR0-V///All Copyrights Go's To NIR0 & NIR0-V
     niro_games.content == prefix + "math" ||///All Copyrights Go's To NIR0 & NIR0-V
     niro_games.content == prefix + "رياضيات"///All Copyrights Go's To NIR0 & NIR0-V
@@ -344,8 +430,17 @@ niro.on("message", niro_games => {
     });///All Copyrights Go's To NIR0 & NIR0-V
   }///All Copyrights Go's To NIR0 & NIR0-V
 });///All Copyrights Go's To NIR0 & NIR0-V
+fs.writeFile("./prefix.json", JSON.stringify(prefixes), err => {///All Copyrights Go's To NIR0 & NIR0-V
+  if (err) console.error(err);///All Copyrights Go's To NIR0 & NIR0-V
+});///All Copyrights Go's To NIR0 & NIR0-V
 
-niro.on("message", niro_games => {
+niro.on("message", niro_games => {///All Copyrights Go's To NIR0 & NIR0-V
+  if (!prefixes[niro_games.guild.id])///All Copyrights Go's To NIR0 & NIR0-V
+    prefixes[niro_games.guild.id] = {///All Copyrights Go's To NIR0 & NIR0-V
+      prefix: process.env.PREFIX///All Copyrights Go's To NIR0 & NIR0-V
+    };///All Copyrights Go's To NIR0 & NIR0-V
+
+  var prefix = prefixes[niro_games.guild.id].prefix;///All Copyrights Go's To NIR0 & NIR0-V
   if (///All Copyrights Go's To NIR0 & NIR0-V
     niro_games.content == prefix + "capitals" ||///All Copyrights Go's To NIR0 & NIR0-V
     niro_games.content == prefix + "عواصم"///All Copyrights Go's To NIR0 & NIR0-V
@@ -381,8 +476,17 @@ niro.on("message", niro_games => {
     });///All Copyrights Go's To NIR0 & NIR0-V
   }///All Copyrights Go's To NIR0 & NIR0-V
 });///All ///All Copyrights Go's To NIR0 & NIR0-VCopyrights Go's To NIR0 & NIR0-V
+fs.writeFile("./prefix.json", JSON.stringify(prefixes), err => {///All Copyrights Go's To NIR0 & NIR0-V
+  if (err) console.error(err);///All Copyrights Go's To NIR0 & NIR0-V
+});///All Copyrights Go's To NIR0 & NIR0-V
 
 niro.on("message", niro_games => {
+  if (!prefixes[niro_games.guild.id])
+    prefixes[niro_games.guild.id] = {
+      prefix: process.env.PREFIX
+    };
+
+  var prefix = prefixes[niro_games.guild.id].prefix;
   if (
     niro_games.content == prefix + "brand" ||
     niro_games.content == prefix + "شعار"
@@ -424,8 +528,17 @@ niro.on("message", niro_games => {
     });
   }
 });
+    fs.writeFile("./Database/prefix.json", JSON.stringify(prefixes), (err) => {
+        if (err) console.error(err);
+    });
 
 niro.on("message", niro_games => {
+  if (!prefixes[niro_games.guild.id])
+    prefixes[niro_games.guild.id] = {
+      prefix: process.env.PREFIX
+    };
+
+  var prefix = prefixes[niro_games.guild.id].prefix;
   if (
     niro_games.content == prefix + "flag" ||
     niro_games.content == prefix + "اعلام"
@@ -466,6 +579,9 @@ niro.on("message", niro_games => {
     });
   }
 });
+    fs.writeFile("./Database/prefix.json", JSON.stringify(prefixes), (err) => {
+        if (err) console.error(err);
+    });
 
 const cuttweet = [
   "كت تويت ‏| تخيّل لو أنك سترسم شيء وحيد فيصبح حقيقة، ماذا سترسم؟",
@@ -498,6 +614,12 @@ const cuttweet = [
 ];
 
 niro.on("message", niro_games => {
+  if (!prefixes[niro_games.guild.id])
+    prefixes[niro_games.guild.id] = {
+      prefix: process.env.PREFIX
+    };
+
+  var prefix = prefixes[niro_games.guild.id].prefix;
   if (
     niro_games.content.startsWith(prefix + "cut") ||
     niro_games.content.startsWith(prefix + "كت")
@@ -515,8 +637,17 @@ niro.on("message", niro_games => {
     console.log("[id] Send By: " + niro_games.author.username);
   }
 });
+    fs.writeFile("./Database/prefix.json", JSON.stringify(prefixes), (err) => {
+        if (err) console.error(err);
+    });
 
 niro.on("message", niro_games => {
+  if (!prefixes[niro_games.guild.id])
+    prefixes[niro_games.guild.id] = {
+      prefix: process.env.PREFIX
+    };
+
+  var prefix = prefixes[niro_games.guild.id].prefix;
   if (
     niro_games.content == prefix + "emoji" ||
     niro_games.content == prefix + "ايموجي"
@@ -552,8 +683,17 @@ niro.on("message", niro_games => {
     });
   }
 });
+    fs.writeFile("./Database/prefix.json", JSON.stringify(prefixes), (err) => {
+        if (err) console.error(err);
+    });
 
 niro.on("message", message => {
+  if (!prefixes[message.guild.id])
+    prefixes[message.guild.id] = {
+      prefix: process.env.PREFIX
+    };
+
+  var prefix = prefixes[message.guild.id].prefix;
   if (message.author.bot) return;
   if (message.content.startsWith(prefix + "xo")) {
     let array_of_mentions = message.mentions.users.array();
@@ -635,8 +775,17 @@ niro.on("message", message => {
     }
   }
 });
+    fs.writeFile("./Database/prefix.json", JSON.stringify(prefixes), (err) => {
+        if (err) console.error(err);
+    });
 
 niro.on("message", function(niro_games) {
+  if (!prefixes[niro_games.guild.id])
+    prefixes[niro_games.guild.id] = {
+      prefix: process.env.PREFIX
+    };
+
+  var prefix = prefixes[niro_games.guild.id].prefix;
   if (niro_games.content.startsWith(prefix + "rps")) {
     let messageArgs = niro_games.content
       .split(" ")
@@ -690,8 +839,17 @@ niro.on("message", function(niro_games) {
     });
   }
 });
+    fs.writeFile("./Database/prefix.json", JSON.stringify(prefixes), (err) => {
+        if (err) console.error(err);
+    });
 
 niro.on("message", async niro_games => {
+  if (!prefixes[niro_games.guild.id])
+    prefixes[niro_games.guild.id] = {
+      prefix: process.env.PREFIX
+    };
+
+  var prefix = prefixes[niro_games.guild.id].prefix;
   if (niro_games.author.bot) return;
   if (niro_games.channel.type === "dm") return;
 
@@ -714,8 +872,17 @@ niro.on("message", async niro_games => {
     niro_games.channel.send(ballembed);
   }
 });
+    fs.writeFile("./Database/prefix.json", JSON.stringify(prefixes), (err) => {
+        if (err) console.error(err);
+    });
 
 niro.on("message", niro_games => {
+  if (!prefixes[niro_games.guild.id])
+    prefixes[niro_games.guild.id] = {
+      prefix: process.env.PREFIX
+    };
+
+  var prefix = prefixes[niro_games.guild.id].prefix;
 
   if (
     niro_games.content.startsWith(prefix + "frots") ||
@@ -734,6 +901,9 @@ niro.on("message", niro_games => {
     niro_games.channel.send(`${slots1} | ${slots2} | ${slots3} - ${we}`);
   }
 });
+    fs.writeFile("./Database/prefix.json", JSON.stringify(prefixes), (err) => {
+        if (err) console.error(err);
+    });
 
 const Sra7a = [
   "صراحه  |  صوتك حلوة؟",
@@ -804,6 +974,12 @@ const Sra7a = [
   "صراحه | هل تحب عائلتك ؟"
 ];
 niro.on("message", niro_games => {
+  if (!prefixes[niro_games.guild.id])
+    prefixes[niro_games.guild.id] = {
+      prefix: process.env.PREFIX
+    };
+
+  var prefix = prefixes[niro_games.guild.id].prefix;
   if (niro_games.author.bot) return;
   if (niro_games.content.startsWith(prefix + "sara7a")) {
     if (!niro_games.channel.guild)
@@ -819,8 +995,17 @@ niro.on("message", niro_games => {
     niro_games.channel.sendEmbed(niro);
   }
 });
+    fs.writeFile("./Database/prefix.json", JSON.stringify(prefixes), (err) => {
+        if (err) console.error(err);
+    });
 
 niro.on("message", niro_games => {
+  if (!prefixes[niro_games.guild.id])
+    prefixes[niro_games.guild.id] = {
+      prefix: process.env.PREFIX
+    };
+
+  var prefix = prefixes[niro_games.guild.id].prefix;
   if (
     niro_games.content == prefix + "translation" ||
     niro_games.content == prefix + "ترجمه"
@@ -876,8 +1061,17 @@ niro.on("message", niro_games => {
     });
   }
 });
+    fs.writeFile("./Database/prefix.json", JSON.stringify(prefixes), (err) => {
+        if (err) console.error(err);
+    });
 
 niro.on("message", niro_games => {
+  if (!prefixes[niro_games.guild.id])
+    prefixes[niro_games.guild.id] = {
+      prefix: process.env.PREFIX
+    };
+
+  var prefix = prefixes[niro_games.guild.id].prefix;
   if (
     niro_games.content.startsWith(prefix + "قتل") +
     niro_games.content.startsWith(prefix + "kill")
@@ -899,8 +1093,17 @@ niro.on("message", niro_games => {
     niro_games.channel.send(embed);
   }
 });
+    fs.writeFile("./Database/prefix.json", JSON.stringify(prefixes), (err) => {
+        if (err) console.error(err);
+    });
 
 niro.on("message", niro_games => {
+  if (!prefixes[niro_games.guild.id])
+    prefixes[niro_games.guild.id] = {
+      prefix: process.env.PREFIX
+    };
+
+  var prefix = prefixes[niro_games.guild.id].prefix;
   if (
     niro_games.content.startsWith(prefix + "حضن") +
     niro_games.content.startsWith(prefix + "hug")
@@ -922,8 +1125,16 @@ niro.on("message", niro_games => {
     niro_games.channel.send(embed);
   }
 });
-
+    fs.writeFile("./Database/prefix.json", JSON.stringify(prefixes), (err) => {
+        if (err) console.error(err);
+    });
 niro.on("message", niro_games => {
+  if (!prefixes[niro_games.guild.id])
+    prefixes[niro_games.guild.id] = {
+      prefix: process.env.PREFIX
+    };
+
+  var prefix = prefixes[niro_games.guild.id].prefix;
   if (
     niro_games.content.startsWith(prefix + "حب") +
     niro_games.content.startsWith(prefix + "love")
@@ -945,8 +1156,17 @@ niro.on("message", niro_games => {
     niro_games.channel.send(embed);
   }
 });
+    fs.writeFile("./Database/prefix.json", JSON.stringify(prefixes), (err) => {
+        if (err) console.error(err);
+    });
 
 niro.on("message", niro_games => {
+  if (!prefixes[niro_games.guild.id])
+    prefixes[niro_games.guild.id] = {
+      prefix: process.env.PREFIX
+    };
+
+  var prefix = prefixes[niro_games.guild.id].prefix;
   if (niro_games.content.startsWith(prefix + "hack")) {
     if (!niro_games.author.id === "") return;
     if (niro_games.author.bot) return;
@@ -1226,8 +1446,18 @@ niro.on("message", niro_games => {
       });
   }
 });
+    fs.writeFile("./Database/prefix.json", JSON.stringify(prefixes), (err) => {
+        if (err) console.error(err);
+    });
+
 
 niro.on("message", niro_games => {
+  if (!prefixes[niro_games.guild.id])
+    prefixes[niro_games.guild.id] = {
+      prefix: process.env.PREFIX
+    };
+
+  var prefix = prefixes[niro_games.guild.id].prefix;
   if (
     niro_games.content.startsWith(prefix + "ملك و كتابه") +
     niro_games.content.startsWith(prefix + "coinflip")
@@ -1248,8 +1478,16 @@ niro.on("message", niro_games => {
     niro_games.channel.send(embed);
   }
 });
-
+    fs.writeFile("./Database/prefix.json", JSON.stringify(prefixes), (err) => {
+        if (err) console.error(err);
+    });
 niro.on("message", niro_games => {
+  if (!prefixes[niro_games.guild.id])
+    prefixes[niro_games.guild.id] = {
+      prefix: process.env.PREFIX
+    };
+
+  var prefix = prefixes[niro_games.guild.id].prefix;
   if (
     niro_games.content.startsWith(prefix + "بوسه") +
     niro_games.content.startsWith(prefix + "kiss")
@@ -1273,3 +1511,6 @@ niro.on("message", niro_games => {
     niro_games.channel.send(embed);
   }
 });
+    fs.writeFile("./Database/prefix.json", JSON.stringify(prefixes), (err) => {
+        if (err) console.error(err);
+    });
