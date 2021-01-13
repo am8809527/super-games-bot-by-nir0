@@ -11,7 +11,6 @@ const niro = new Discord.Client();///All Copyrights Go's To NIR0 & NIR0-V
 niro.login(process.env.NIRO_TOKEN).catch(err => console.error(`[ Discord ] Worng Token :<`));///All Copyrights Go's To NIR0 & NIR0-V
 const fs = require("fs");///All Copyrights Go's To NIR0 & NIR0-V
 const prefix = process.env.NIRO_PREFIX;///All Copyrights Go's To NIR0 & NIR0-V
-const points = JSON.parse(fs.readFileSync("./Database/points.json", "utf8"));///All Copyrights Go's To NIR0 & NIR0-V
 
 /////////////////////|
 niro.on("ready", async () => {
