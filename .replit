@@ -1,0 +1,2 @@
+language = "nodejs"
+run = "node niro_games.js"
