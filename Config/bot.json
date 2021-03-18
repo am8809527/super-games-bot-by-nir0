@@ -1,14 +1,14 @@
 {
   "dev": {
-    "owner_id": ["743448933573066832"],
-    "blacklist_room": ["820162683319484429"]
+    "owner_id": [""],
+    "blacklist_room": [""]
   },
   "bot": {
     "connection": {
-      "token": "ODEwOTM5NTkwNDI3OTM0ODIx.YCq8WA._sU5Lp1gPa_OaRIwybpPvdE0730"
+      "token": ""
     },
     "setting": {
-      "main_prefix": "1",
+      "main_prefix": "",
       "main_lang": ""
     }
   }
