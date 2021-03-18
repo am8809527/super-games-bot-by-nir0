@@ -1,4 +1,4 @@
-# **Best Copy of Probot Bot By ニロ#3892**
+# **Best Arabic Games Bot By ニロ#3892**
 
 **ニロ Meen Niro 🙃**
 
