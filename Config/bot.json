@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "owner_id": ["743448933573066832"],
+    "blacklist_room": ["820162683319484429"]
+  },
+  "bot": {
+    "connection": {
+      "token": "ODEwOTM5NTkwNDI3OTM0ODIx.YCq8WA._sU5Lp1gPa_OaRIwybpPvdE0730"
+    },
+    "setting": {
+      "main_prefix": "1",
+      "main_lang": ""
+    }
+  }
+}
