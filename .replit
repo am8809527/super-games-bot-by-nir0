@@ -1,2 +1,2 @@
 language = "nodejs"
-run = "node niro_games.js"
+run = "node index.js"
