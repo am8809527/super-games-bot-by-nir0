@@ -1,3 +1,4 @@
+require('./Events/24\7/server.js')
 const Discord = require('discord.js');
 const config = require('./Config/bot.json');
 const client = new Discord.Client();
