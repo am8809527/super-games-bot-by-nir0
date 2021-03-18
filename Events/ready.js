@@ -9,9 +9,9 @@ module.exports = async (client) => {
 > Users: ${client.users.cache.size}
 > Channels: ${client.channels.cache.size}
 > Servers: ${client.guilds.cache.size}
-> Bot Ping: ${client.ws.ping}  XD
+> Bot Ping: ${client.ws.ping} XD
 > Prefix: ${config.bot.setting.main_prefix}
-> Developer: @ニロ#0001
+> Developer: @ニロ#3892
 > Support: https://discord.gg/zezCEN36Hh
 =====================================`))
   client.user.setActivity(config.bot.setting.main_prefix + "help");
